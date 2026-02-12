@@ -46,14 +46,13 @@ img.src = "https://akubacan.github.io/test/background.jpg"; // WAJIB: simpan gam
 
 let imageLoaded = false;
 
-img.onload = function () {
+img.onload = async function () {
     canvas.width = img.width;
     canvas.height = img.height;
     imageLoaded = true;
 
-    document.fonts.ready.then(() => {
-        drawImageWithTime();
-    });
+    await document.fonts.load("500 20px Roboto");
+    drawImageWithTime();
 };
 
 function getCurrentTime() {
@@ -72,7 +71,7 @@ function drawImageWithTime() {
     const timeText = getCurrentTime();
 
     // STYLE STATUS BAR ANDROID
-    ctx.font = "500 100px Roboto";
+    ctx.font = "500 38px Roboto";
     ctx.fillStyle = "#404040";
     ctx.textAlign = "left";
     ctx.textBaseline = "top";
@@ -82,8 +81,8 @@ function drawImageWithTime() {
       Cocok untuk screenshot yang kamu kirim
       Jika ukuran berbeda, sesuaikan.
     */
-    const x = 18;   // posisi horizontal
-    const y = 18;   // posisi vertical
+    const x = 50;   // posisi horizontal
+    const y = 50;   // posisi vertical
 
     ctx.fillText(timeText, x, y);
 }
